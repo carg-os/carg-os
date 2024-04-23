@@ -18,11 +18,11 @@ CC = $(CROSS_PREFIX)gcc
 
 LDFLAGS = -nostdlib -Wl,--gc-sections -flto
 
-FORCE:
-
 LIBS = $(BUILDDIR)/karg.a \
        $(BUILDDIR)/init.a \
        $(BUILDDIR)/libc.a
+
+FORCE:
 
 $(BUILDDIR)/karg.a: FORCE | karg
 	@$(MAKE) -C karg BUILDDIR=$(BUILDDIR)
