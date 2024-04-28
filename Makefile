@@ -24,8 +24,10 @@ LIBS = $(BUILDDIR)/karg.a \
 
 FORCE:
 
+PLATFORM = QEMU
+
 $(BUILDDIR)/karg.a: FORCE | karg
-	@$(MAKE) -C karg BUILDDIR=$(BUILDDIR)
+	@$(MAKE) -C karg BUILDDIR=$(BUILDDIR) PLATFORM=$(PLATFORM)
 
 $(BUILDDIR)/init.a: FORCE | init libc
 	@$(MAKE) -C init BUILDDIR=$(BUILDDIR) LIBC_INCLUDE=$(CURDIR)/libc/include
