@@ -8,11 +8,11 @@ CargOS is an educational Unix-like operating system specifically designed for de
 ## Build and Emulate
 CargOS utilizes C23, the latest revision of C. Though it's not currently compatible with the RISC-V GNU toolchains provided by most major Linux distributions. Consequently, users have the option to either compile it from the source or use our pre-compiled binaries. Additional details can be found at [carg-os/riscv-gnu-toolchain](https://github.com/carg-os/riscv-gnu-toolchain).
 
-To build CargOS, execute the following commands. Keep in mind that the `CROSS_PREFIX` variable in the third instruction specifies the path to the RISC-V GNU toolchain. Adjust it accordingly if your toolchain has a different prefix.
+To build CargOS, execute the following commands. Keep in mind that you can specify the path of your compiler by adjusting `cmake/toolchain.cmake` if CargOS wasn't compiled successfully.
 ```shell
 git clone https://github.com/carg-os/carg-os.git
 cd carg-os
-make CROSS_PREFIX=riscv64-unknown-elf-
+make
 ```
 
 You can emulate CargOS using [QEMU](https://www.qemu.org/) (only the subset targeting RV64 is required), which can be done using the following instruction.

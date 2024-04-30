@@ -1,0 +1,4 @@
+set(CMAKE_SYSTEM_NAME Generic)
+
+set(TOOLCHAIN_PREFIX riscv64-unknown-elf-)
+set(CMAKE_C_COMPILER ${TOOLCHAIN_PREFIX}gcc)
