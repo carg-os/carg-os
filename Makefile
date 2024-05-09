@@ -17,7 +17,7 @@ lua:
 newlib:
 	@git clone https://github.com/carg-os/newlib.git
 
-PLATFORM = QEMU
+PLATFORM = VIRT
 
 build: | init karg
 	@mkdir build
