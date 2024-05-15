@@ -17,11 +17,10 @@ lua:
 newlib:
 	@git clone https://github.com/carg-os/newlib.git
 
-PLATFORM = VIRT
-
 build: | init karg
 	@mkdir build
-	@cmake -B build -D CMAKE_TOOLCHAIN_FILE=cmake/toolchain.cmake -D PLATFORM=$(PLATFORM)
+	@cmake -B build -D CMAKE_TOOLCHAIN_FILE=cmake/toolchain.cmake \
+		-D PLATFORM=$(PLATFORM)
 
 newlib/build: | newlib
 	@mkdir newlib/build; cd newlib/build; ../configure --target=riscv-cargos \
