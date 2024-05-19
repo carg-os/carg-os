@@ -2,8 +2,6 @@ all: build/carg-os
 
 clean:
 	@rm -rf build
-	@make -C lua clean
-	@rm -rf newlib/build
 
 init:
 	@git clone https://github.com/carg-os/init.git
