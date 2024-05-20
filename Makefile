@@ -17,20 +17,32 @@ newlib:
 
 build: | init karg
 	@mkdir build
-	@cmake -B build -D CMAKE_TOOLCHAIN_FILE=cmake/toolchain.cmake \
+	@cmake \
+		-B build \
+		-D CMAKE_TOOLCHAIN_FILE=cmake/toolchain.cmake \
 		-D PLATFORM=$(PLATFORM)
 
 newlib/build: | newlib
-	@mkdir newlib/build; cd newlib/build; ../configure --target=riscv-cargos \
+	@mkdir newlib/build; \
+	 cd newlib/build; \
+	 ../configure \
+		--target=riscv-cargos \
 		AR_FOR_TARGET=riscv64-unknown-elf-ar \
 		CC_FOR_TARGET=riscv64-unknown-elf-gcc \
-		RANLIB_FOR_TARGET=riscv64-unknown-elf-ranlib
+		RANLIB_FOR_TARGET=riscv64-unknown-elf-ranlib \
+		CFLAGS_FOR_TARGET="-mcmodel=medany"
 
 FORCE:
 
 build/carg-os: FORCE | build lua newlib/build
-	@cd newlib/build; make
-	@make -C lua LIBC_INCLUDE=$(CURDIR)/newlib/newlib/include generic
+	@cd newlib/build; \
+	 make
+	@make \
+		-C lua \
+		CC=riscv64-unknown-elf-gcc \
+		SYSCFLAGS="-mcmodel=medany" \
+		LIBC_INCLUDE=$(CURDIR)/newlib/newlib/libc/include \
+		generic
 	@cmake --build build
 
 run: build/carg-os

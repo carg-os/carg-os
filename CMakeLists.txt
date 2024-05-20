@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.29)
 project(carg-os C)
 
-set(LIBC_INCLUDE ${PROJECT_SOURCE_DIR}/newlib/libc/include)
+set(LIBC_INCLUDE ${PROJECT_SOURCE_DIR}/newlib/newlib/libc/include)
 set(LUA_INCLUDE ${PROJECT_SOURCE_DIR}/lua/src)
 add_subdirectory(karg)
 add_subdirectory(init)
