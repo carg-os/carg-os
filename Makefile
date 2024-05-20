@@ -3,24 +3,46 @@ all: build/carg-os
 clean:
 	@rm -rf build
 
-karg:
-	@git clone https://github.com/carg-os/karg.git
-
 init:
 	@git clone https://github.com/carg-os/init.git
 
-libc:
-	@git clone https://github.com/carg-os/libc.git
+karg:
+	@git clone https://github.com/carg-os/karg.git
 
-PLATFORM = QEMU
+lua:
+	@git clone https://github.com/carg-os/lua.git
 
-build: | karg init libc
+newlib:
+	@git clone https://github.com/carg-os/newlib.git
+
+build: | init karg
 	@mkdir build
-	@cmake -B build -D CMAKE_TOOLCHAIN_FILE=cmake/toolchain.cmake -D PLATFORM=$(PLATFORM)
+	@cmake \
+		-B build \
+		-D CMAKE_TOOLCHAIN_FILE=cmake/toolchain.cmake \
+		-D PLATFORM=$(PLATFORM)
+
+newlib/build: | newlib
+	@mkdir newlib/build; \
+	 cd newlib/build; \
+	 ../configure \
+		--target=riscv-cargos \
+		AR_FOR_TARGET=riscv64-unknown-elf-ar \
+		CC_FOR_TARGET=riscv64-unknown-elf-gcc \
+		RANLIB_FOR_TARGET=riscv64-unknown-elf-ranlib \
+		CFLAGS_FOR_TARGET="-mcmodel=medany"
 
 FORCE:
 
-build/carg-os: FORCE | build
+build/carg-os: FORCE | build lua newlib/build
+	@cd newlib/build; \
+	 make
+	@make \
+		-C lua \
+		CC=riscv64-unknown-elf-gcc \
+		SYSCFLAGS="-mcmodel=medany" \
+		LIBC_INCLUDE=$(CURDIR)/newlib/newlib/libc/include \
+		generic
 	@cmake --build build
 
 run: build/carg-os
