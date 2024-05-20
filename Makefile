@@ -27,20 +27,29 @@ newlib/build: | newlib
 	 cd newlib/build; \
 	 ../configure \
 		--target=riscv-cargos \
-		AR_FOR_TARGET=riscv64-unknown-elf-ar \
-		CC_FOR_TARGET=riscv64-unknown-elf-gcc \
-		RANLIB_FOR_TARGET=riscv64-unknown-elf-ranlib \
-		CFLAGS_FOR_TARGET="-mcmodel=medany"
+		AR_FOR_TARGET=ar \
+		CC_FOR_TARGET=clang \
+        RANLIB_FOR_TARGET=ranlib \
+		CFLAGS_FOR_TARGET=" \
+			-target riscv64-unknown-elf \
+			-march=rv64gc \
+			-mcmodel=medany \
+			-D__GLIBC_USE\(...\)=0 \
+		"
 
 FORCE:
 
 build/carg-os: FORCE | build lua newlib/build
-	@cd newlib/build; \
-	 make
+	@cd newlib/build; make
 	@make \
 		-C lua \
-		CC=riscv64-unknown-elf-gcc \
-		SYSCFLAGS="-mcmodel=medany" \
+		CC=clang \
+		SYSCFLAGS=" \
+			-target riscv64-unknown-elf \
+			-march=rv64gc \
+			-mcmodel=medany \
+			-D__GLIBC_USE\(...\)=0 \
+		" \
 		LIBC_INCLUDE=$(CURDIR)/newlib/newlib/libc/include \
 		generic
 	@cmake --build build

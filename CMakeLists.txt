@@ -17,5 +17,4 @@ target_link_libraries(carg-os
     ${PROJECT_SOURCE_DIR}/lua/src/liblua.a
     ${PROJECT_SOURCE_DIR}/newlib/build/riscv-cargos/newlib/libc.a
     ${PROJECT_SOURCE_DIR}/newlib/build/riscv-cargos/newlib/libm.a
-    gcc
 )
