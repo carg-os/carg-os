@@ -46,4 +46,9 @@ build/carg-os: FORCE | build lua newlib/build
 	@cmake --build build
 
 run: build/carg-os
-	@qemu-system-riscv64 -M virt -nographic -kernel build/carg-os
+	@qemu-system-riscv64 \
+		-M virt \
+		-serial stdio \
+		-global virtio-mmio.force-legacy=false \
+		-device virtio-gpu-device \
+		-kernel build/carg-os
