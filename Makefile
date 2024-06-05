@@ -1,4 +1,4 @@
-all: build/carg-os
+all: build/karg/karg
 
 clean:
 	@rm -rf build
@@ -34,7 +34,7 @@ newlib/build: | newlib
 
 FORCE:
 
-build/carg-os: FORCE | build lua newlib/build
+build/karg/karg: FORCE | build lua newlib/build
 	@cd newlib/build; \
 	 make
 	@make \
@@ -45,10 +45,10 @@ build/carg-os: FORCE | build lua newlib/build
 		generic
 	@cmake --build build
 
-run: build/carg-os
+run: build/karg/karg
 	@qemu-system-riscv64 \
 		-M virt \
 		-serial stdio \
 		-global virtio-mmio.force-legacy=false \
 		-device virtio-gpu-device \
-		-kernel build/carg-os
+		-kernel build/karg/karg
