@@ -21,7 +21,7 @@ make run
 ```
 
 ## Components
-[CargOS](https://github.com/carg-os/carg-os) is a repository containing only a single Makefile that automatically finishes the process of cloning, building, and linking all the system components. It resembles the commonly-applied [monorepo](https://en.wikipedia.org/wiki/Monorepo) paradigm, though it differs in that all components are only stored together when being using locally.
+[CargOS](https://github.com/carg-os/carg-os) is a repository containing only a single Makefile that automatically finishes the process of cloning, building, and linking all the system components. It resembles the commonly-applied [monorepo](https://en.wikipedia.org/wiki/Monorepo) paradigm, though it differs in that all components are only stored together when being used locally.
 
 [Karg](https://github.com/carg-os/karg) is the kernel of CargOS. It abstracts the low-level interfaces of devices and implements the core functionalities of the system. Essential features such as process management, I/O management and file system are all provided by it.
 
