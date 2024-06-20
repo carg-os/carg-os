@@ -48,7 +48,5 @@ build/karg/karg: FORCE | build lua newlib/build
 run: build/karg/karg
 	@qemu-system-riscv64 \
 		-M virt \
-		-serial stdio \
-		-global virtio-mmio.force-legacy=false \
-		-device virtio-gpu-device \
+		-nographic \
 		-kernel build/karg/karg
