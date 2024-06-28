@@ -20,6 +20,7 @@ build: | init karg
 	@cmake \
 		-B build \
 		-D CMAKE_TOOLCHAIN_FILE=cmake/toolchain.cmake \
+		-D ARCH=$(ARCH) \
 		-D PLATFORM=$(PLATFORM)
 
 newlib/build: | newlib
