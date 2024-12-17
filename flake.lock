@@ -1,0 +1,48 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1734083684,
+        "narHash": "sha256-5fNndbndxSx5d+C/D0p/VF32xDiJCJzyOqorOYW4JEo=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "314e12ba369ccdb9b352a4db26ff419f7c49fa84",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "riscv-gnu-toolchain": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1734401777,
+        "narHash": "sha256-hLxVw7eEu3vTvgqupzrtTA9qy0nfcVcbAtoy9h/1Oag=",
+        "owner": "carg-os",
+        "repo": "riscv-gnu-toolchain",
+        "rev": "702dfb564e2f810cec5a3a4840ffe35bf20518a7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "carg-os",
+        "repo": "riscv-gnu-toolchain",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "riscv-gnu-toolchain": "riscv-gnu-toolchain"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
