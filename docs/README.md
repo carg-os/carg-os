@@ -27,4 +27,4 @@ make run
 
 [Init](https://github.com/carg-os/init) is the first process that starts running after the initialization of the kernel. It initializes portions of the system that was not set up by the kernel. After the system initialization, a shell providing interactive and intuitive access to the system is started, with several commands available.
 
-[Libc](https://github.com/carg-os/libc) is the C standard library implementation for CargOS. It is designed to adhere rigorously to standard specifications, this ensures the ease of porting applications relying solely on the standard library to CargOS.
+[Newlib](https://github.com/carg-os/newlib) is the C standard library implementation for CargOS. It is designed to adhere rigorously to standard specifications, this ensures the ease of porting applications relying solely on the standard library to CargOS.
